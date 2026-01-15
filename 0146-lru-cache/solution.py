@@ -1,50 +1,48 @@
 class Node:
     def __init__(self,key,val):
-        self.key,self.val=key,val
-        self.prev=self.next=None
-
+        self.key=key
+        self.val=val
+        self.next=self.prev=None
 class LRUCache:
-
-    def __init__(self, capacity: int):
+    def __init__(self,capacity):
         self.cap=capacity
         self.cache={}
-        self.left,self.right=Node(0,0),Node(0,0)
-        self.left.next=self.right#(lru)
-        self.right.prev=self.left#mru
-
-
-    def remove(self,node):
-        prev,nxt=node.prev,node.next
-        prev.next=nxt
-        nxt.prev=prev
-
-    
+        self.left=Node(0,0)
+        self.right=Node(0,0)
+        self.left.next=self.right
+        self.right.prev=self.left
     def insert(self,node):
-        prev,nxt=self.right.prev,self.right
-        prev.next=node
-        nxt.prev=node
+        previous,nxt=self.right.prev,self.right
+        previous.next=nxt.prev=node
         node.next=nxt
-        node.prev=prev
-
-
-    def get(self, key: int) -> int:
+        node.prev=previous
+    def remove(self,node):
+        current=node.prev
+        nxt=node.next
+        current.next=nxt
+        nxt.prev=current
+    
+    def get(self,key):
         if key in self.cache:
             self.remove(self.cache[key])
             self.insert(self.cache[key])
             return self.cache[key].val
         return -1
-            
-        
 
-    def put(self, key: int, value: int) -> None:
+    def put(self,key,value):
         if key in self.cache:
             self.remove(self.cache[key])
         self.cache[key]=Node(key,value)
         self.insert(self.cache[key])
-        if(len(self.cache))>self.cap:
-            lru=self.left.next.key
+        if(len(self.cache)>self.cap):
+            self.key=self.left.next
             self.remove(self.left.next)
-            del self.cache[lru]
-            
+            del self.cache[self.key.key]
+    
+         
+    
+
+
+    
         
 
