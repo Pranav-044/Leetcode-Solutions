@@ -1,12 +1,18 @@
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        dictionary=defaultdict(list)
+        dictionary={}
         for i in strs:
-            array=[0]*26
+            arr=[0]*26
             for j in i:
-                array[ord(j)-ord("a")]+=1
-            dictionary[tuple(array)].append(i)
-        return list(dictionary.values())
+                arr[ord(j)-ord("a")]+=1
+            if tuple(arr) not in dictionary:
+                dictionary[tuple(arr)]=[]    
+            dictionary[tuple(arr)].append(i)    
+                
+        final=list(dictionary.values())
+        return final    
+
+
 
         
         
