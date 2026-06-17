@@ -1,30 +1,34 @@
 class Solution:
     def isValidSudoku(self, board: List[List[str]]) -> bool:
-        # Use sets to store seen numbers for each row, column, and square
-        # We use a set of tuples: (index, value)
-        rows = set()
-        cols = set()
-        squares = set()
-
-        for r in range(9):
-            for c in range(9):
-                val = board[r][c]
-                
-                if val == ".":
-                    continue
-                
-                # Create unique identifiers for each position type
-                row_key = (r, val)
-                col_key = (c, val)
-                sq_key = (r // 3, c // 3, val)
-                
-                # Check if we've seen this value in this row, col, or square
-                if row_key in rows or col_key in cols or sq_key in squares:
+        for i in range(9):
+            s=set()
+            for j in range(9):
+                if board[i][j] in s:
                     return False
+                elif board[i][j]!=".":
+                    s.add(board[i][j])
+        
+        for i in range(9):
+            s=set()
+            for j in range(9):
+                if board[j][i] in s:
+                    return False
+                elif board[j][i]!=".":
+                    s.add(board[j][i])
+        
+        
+        
+        indices=[(0,0),(0,3),(0,6),(3,0),(3,3),(3,6),(6,0),(6,3),(6,6)]
+        for j,k in indices:
+            s=set()
+            for i in range(j,j+3):
                 
-                # Add to sets
-                rows.add(row_key)
-                cols.add(col_key)
-                squares.add(sq_key)
-                
+                for m in range(k,k+3):
+                    if board[i][m] in s:
+                        return False
+                    elif board[i][m]!=".":
+                        s.add(board[i][m])
         return True
+
+        
+
