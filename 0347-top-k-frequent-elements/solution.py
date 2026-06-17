@@ -1,6 +1,6 @@
 class Solution: 
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        
+        f=0
         dictionary={}
         final=[]
         bucket=[[] for _ in range(len(nums)+1)]
@@ -11,16 +11,9 @@ class Solution:
             bucket[r].append(l)
         print(bucket)    
         for j in range(len(bucket)-1,-1,-1):
-            if(k!=0 and bucket[j]!=[]):
-                if(len(bucket[j])>1):
-                    for l in range(len(bucket[j])):
-                        if(k!=0):
-                            final.append(bucket[j][l])
-                            k-=1
-
-                else:
-                    final.append(bucket[j][0])
-                    k-=1
+            if(f!=k and bucket[j]!=[]):
+                f+=len(bucket[j])
+                final+=bucket[j]
         return final
 
 
