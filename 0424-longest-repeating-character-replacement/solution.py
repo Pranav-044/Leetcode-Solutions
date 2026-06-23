@@ -10,33 +10,34 @@ class Solution:
         #         l+=1
         #     maximum=max(maximum,i-l+1)
         # return maximum        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         dictionary={}
-        length=0
         l=0
+        max_f=0
         longest=0
-        maximum=0
         for i in range(len(s)):
             length=i-l+1
             dictionary[s[i]]=dictionary.get(s[i],0)+1
-            maximum=max(maximum,dictionary[s[i]])
-            val=length-maximum
-            if(val<=k):
+            max_f=max(max_f,dictionary[s[i]])
+            window=length-max_f
+            if(window<=k):
                 longest=max(longest,length)
+                
             else:
                 dictionary[s[l]]-=1
                 l+=1
-        return longest       
+        return longest
 
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
         
         
         
