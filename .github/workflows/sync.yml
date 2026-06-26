@@ -1,9 +1,9 @@
 name: Sync Leetcode
 
 on:
-  workflow_dispatch:      # Allows you to trigger the sync manually with a button
+  workflow_dispatch:
   schedule:
-    - cron: "0 8 * * *"   # Automatically runs every single day at 8:00 AM UTC
+    - cron: "0 8 * * *"
 
 jobs:
   build:
