@@ -4,13 +4,14 @@ class Solution:
         r=len(height)-1
         maximum=0
         while l<r:
-            capacity=(r-l)*(min(height[l],height[r]))
-            maximum=max(capacity,maximum)
-            if(height[l]>height[r]):
-                r-=1
-            else:
+            content=min(height[l],height[r])*(r-l)
+            maximum=max(maximum,content)
+            if(height[l]<height[r]):
                 l+=1
+            else:
+                r-=1
         return maximum
+
 
             
 
