@@ -6,12 +6,15 @@ class Solution:
             return arr[-1] - arr[0]
 
         def isPossible(value):
-            count = 1
+            count = 2
             last = 0
-            for i in range(1, len(arr)):
+            for i in range(1, len(arr)-1):
                 if arr[i] - arr[last] >= value:
                     count += 1
                     last = i
+                    if(arr[-1] - arr[i]<value):
+                        count-=1
+
             return count >= m
 
         l = 1
