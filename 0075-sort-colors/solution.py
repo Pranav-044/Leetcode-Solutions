@@ -4,13 +4,35 @@ class Solution:
         mid=0
         high=len(nums)-1
         while mid<=high:
-            if(nums[mid] == 0):
-                nums[mid],nums[l]=nums[l],nums[mid]
+            if(nums[mid]==0):
+                nums[mid],nums[l] = nums[l],nums[mid]
                 l+=1
                 mid+=1
             elif(nums[mid] == 1):
                 mid+=1
             else:
-                nums[mid],nums[high]=nums[high],nums[mid]
+                nums[mid],nums[high] = nums[high],nums[mid]
                 high-=1
+            
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
         
