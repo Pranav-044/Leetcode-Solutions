@@ -1,30 +1,44 @@
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
         T={}
-        S={}
-        have=0
+        F={}
+        found=0
         l=0
-        r=0
-        final=[]
-        final_length=float("inf")
+        maximum=len(s)+1
+        x_coor=0
         for i in range(len(t)):
             T[t[i]] = T.get(t[i],0)+1
-        need=len(T)
         for j in range(len(s)):
-            S[s[j]] = S.get(s[j],0)+1
-            if s[j] in T and S[s[j]] == T[s[j]]:
-                have+=1
-            while have == need:
-                if(j-l+1<final_length):
-                    final=[l,j]
-                    final_length=j-l+1
-                S[s[l]]-=1
-                if s[l] in T and S[s[l]]<T[s[l]]:
-                    have-=1
+            if(s[j] in T):
+                F[s[j]] = F.get(s[j],0)+1
+                if(T[s[j]] == F[s[j]]):
+                    found+=1
+            while(found == len(T)):
+                if j-l+1<maximum:
+                    x_coor=l
+                    maximum=j-l+1
+                if(s[l] in T):
+                    F[s[l]]-=1
+                if(s[l] in T and F[s[l]]<T[s[l]]):
+                    found-=1
                 l+=1
-        if(final_length==float("inf")):
-            return ""
-        else:
-            l,r=final    
-            return str(s[l:r+1])
+        if(maximum == len(s)+1):
+            return  ""    
+        return s[x_coor:x_coor+maximum]
+                    
+
+
+
+                    
+            
+            
+                
+
+                
+            
+
+
+
+
+
         
