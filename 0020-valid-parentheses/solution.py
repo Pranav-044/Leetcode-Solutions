@@ -4,16 +4,16 @@ class Solution:
         stack=[]
         for i in s:
             if i in mapping:
-                if(not stack):
-                    popped="#"
+                if stack:
+                    element=stack.pop()
+                    if mapping[i] !=element:
+                        return False 
                 else:
-                    popped=stack.pop()
-                if(mapping[i]!=popped):
                     return False
             else:
                 stack.append(i)
         return not stack
-                    
-                
+
+
 
         
